@@ -30,6 +30,9 @@ import java.util.Scanner;
  */
 public class PrimeNumber {
     public static void main(String[] args) {
+
+        // Input number to find whether the given number is prime or not
+        System.out.println("Input number to find whether the given number is prime or not");
         isInputPrimeOrNot();
     }
 
@@ -40,6 +43,7 @@ public class PrimeNumber {
     private static boolean isInputPrimeOrNot() {
         int i, num = 0, p = 0;
         Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter 0 to exit, or ");
         System.out.print("Enter number to find prime or not=");
         String getNumber = scanner.next();
         num = Integer.valueOf(getNumber);
@@ -50,10 +54,10 @@ public class PrimeNumber {
             }
         }
         if (p == 2) {
-            System.out.println("Entered number is"+ num+" and it is a prime number." );
+            System.out.println("Entered number is " + num + " and it is a prime number.");
             isInputPrimeOrNot();
         } else {
-            System.out.println("Entered number is"+ num+" and it is not a prime number." );
+            System.out.println("Entered number is " + num + " and it is not a prime number.");
             isInputPrimeOrNot();
         }
         return true;
