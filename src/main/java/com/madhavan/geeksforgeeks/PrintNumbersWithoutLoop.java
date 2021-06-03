@@ -9,27 +9,39 @@ package com.madhavan.geeksforgeeks;
 public class PrintNumbersWithoutLoop {
 
     //Method 1
-    static  void printNumbers1(int n){
+    static  void usingRecursion1(int n){
         if(n <= 100){
             System.out.println(n);
-            printNumbers1(n+1);
+            usingRecursion1(n+1);
         }
         return;
     }
 
     // Method 2
     //print numbers from 1 - 100 - Reverse way
-    static void printNumbers(int n){
+    static void usingRecursion2(int n){
         if(n > 0) {
-            printNumbers(n - 1);
+            usingRecursion2(n - 1);
             System.out.println(n);
         }
         return;
     }
 
     public static void main(String[] args) {
-        //printNumbers(100);
-        printNumbers1(1);
+        //usingRecursion1(100);
+        usingRecursion2(1);
+
+        /**
+         * System.out.println("1st way to print 1 to 100 without loops");
+         * usingSysOut();
+         *
+         * System.out.println("2nd way to print 1 to 100 without using loops");
+         * usingSysPrint();
+         *
+         * System.out.println("3rd way to print 1 to 100 without loops");
+         * usingRecursion(10);
+         *
+         */
     }
 }
 
