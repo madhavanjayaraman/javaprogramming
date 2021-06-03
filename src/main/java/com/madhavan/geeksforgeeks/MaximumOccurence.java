@@ -1,7 +1,7 @@
 package com.madhavan.geeksforgeeks;
 
 /**
- * author e3016939, Madhavan Jayaraman
+ * author Madhavan Jayaraman
  * date 6/3/2021 , time 4:03 PM
  * project_name javaprogramming
  * package_name com.madhavan.geeksforgeeks\
