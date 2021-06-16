@@ -3,9 +3,11 @@ package com.madhavan.geeksforgeeks;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.List;
+import java.util.Optional;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+
+import static java.util.concurrent.TimeUnit.NANOSECONDS;
 
 /**
  * author e3016939, Madhavan Jayaraman
@@ -17,20 +19,40 @@ public class TextSorting {
 
     public static void main(String[] args) {
 
+        // get the start time
+        long start = System.nanoTime();
 
         try {
+            Files.lines(Paths.get(args[0]))
+                    .flatMap(Pattern.compile("\\s+")::splitAsStream)
+                    .filter(o -> !o.isEmpty())
+                    .map(String::toLowerCase)
+                    .sorted()
+                    .collect(Collectors.collectingAndThen(Collectors.toList(), Optional::of))
+                    .filter(s -> !s.isEmpty()).orElseThrow(() -> new Exception("Usage: WordSorter file"))
+                    .forEach(System.out::println);
 
-          Files.lines(Paths.get(args[0]))
+/*          Files.lines(Paths.get(args[0]))
                     .flatMap(Pattern.compile("\\s+")::splitAsStream)
                     .sorted()
-                    .collect(Collectors.toList())
-                  .stream().filter(s-> !s.isEmpty())
-                  .forEach(System.out::println);
+                    .collect(Collectors.collectingAndThen(Collectors.toList(), Optional::of))
+                  .filter(s-> !s.isEmpty()).orElseThrow(() -> new Exception("Usage: WordSorter file"))
+                  .forEach(System.out::println);*/
             //stream.forEach(System.out::println);
         } catch (IOException e) {
-            System.err.println("Invalid File: "+args[0]);
+            System.err.println("Invalid File: " + args[0]);
+        } catch (Exception e) {
+            System.err.println("Usage: WordSorter file");
         }
+        // get the end time
+        long end = System.nanoTime();
 
+        // execution time in seconds
+        long execution = (end - start);
+        System.out.println("Execution time of Sorting is");
+        System.out.println((double)execution / 1_000_000_000.0 + " seconds");
+        System.out.println(NANOSECONDS.toMillis(execution) + " ms");
+        //NANOSECONDS.toMillis(execution);
     }
 
 
