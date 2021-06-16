@@ -15,7 +15,7 @@ import java.util.stream.Stream;
 import static java.util.concurrent.TimeUnit.NANOSECONDS;
 
 /**
- * author e3016939, Madhavan Jayaraman
+ * author Madhavan Jayaraman
  * date 6/16/2021 , time 5:16 PM
  * project_name javaprogramming
  * package_name com.madhavan.geeksforgeeks\
