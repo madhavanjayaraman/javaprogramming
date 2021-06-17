@@ -1,9 +1,17 @@
 package com.madhavan.geeksforgeeks;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
+import java.util.function.Function;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -18,10 +26,6 @@ import static java.util.concurrent.TimeUnit.NANOSECONDS;
 public class TextSorting {
 
     public static void main(String[] args) {
-
-        // get the start time
-        long start = System.nanoTime();
-
         try {
             Files.lines(Paths.get(args[0]))
                     .flatMap(Pattern.compile("\\s+")::splitAsStream)
@@ -31,46 +35,32 @@ public class TextSorting {
                     .collect(Collectors.collectingAndThen(Collectors.toList(), Optional::of))
                     .filter(s -> !s.isEmpty()).orElseThrow(() -> new Exception("Usage: WordSorter file"))
                     .forEach(System.out::println);
-
-/*          Files.lines(Paths.get(args[0]))
-                    .flatMap(Pattern.compile("\\s+")::splitAsStream)
-                    .sorted()
-                    .collect(Collectors.collectingAndThen(Collectors.toList(), Optional::of))
-                  .filter(s-> !s.isEmpty()).orElseThrow(() -> new Exception("Usage: WordSorter file"))
-                  .forEach(System.out::println);*/
-            //stream.forEach(System.out::println);
         } catch (IOException e) {
             System.err.println("Invalid File: " + args[0]);
         } catch (Exception e) {
             System.err.println("Usage: WordSorter file");
         }
-        // get the end time
-        long end = System.nanoTime();
-
-        // execution time in seconds
-        long execution = (end - start);
-        System.out.println("Execution time of Sorting is");
-        System.out.println((double)execution / 1_000_000_000.0 + " seconds");
-        System.out.println(NANOSECONDS.toMillis(execution) + " ms");
-        //NANOSECONDS.toMillis(execution);
     }
+}
 
 
-    /****
-     *
-     /*
-     StringBuilder sb = new StringBuilder();
-
-     try (BufferedReader br = Files.newBufferedReader(Paths.get(args[0]))) {
-
-     // read line by line
-     String line;
-     while ((line = br.readLine()) != null) {
-     sb.append(line).append("\n");
-     String[] words = line.split(" ");
 
 
-     *//* Reader reader = new StringReader(s);
+/****
+ *
+ /*
+ StringBuilder sb = new StringBuilder();
+
+ try (BufferedReader br = Files.newBufferedReader(Paths.get(args[0]))) {
+
+ // read line by line
+ String line;
+ while ((line = br.readLine()) != null) {
+ sb.append(line).append("\n");
+ String[] words = line.split(" ");
+
+
+ *//* Reader reader = new StringReader(s);
                 Stream<List<String>> stream = records(StreamEx.ofLines(reader)
                         .flatMap(Pattern.compile("\\s+")::splitAsStream));
                 stream.forEach(System.out::println);*//*
@@ -81,4 +71,3 @@ public class TextSorting {
         }
 
         System.out.println(sb);*/
-}
