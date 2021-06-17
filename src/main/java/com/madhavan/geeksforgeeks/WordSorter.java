@@ -22,10 +22,10 @@ import static java.util.concurrent.TimeUnit.NANOSECONDS;
  **/
 public class WordSorter {
     public static void main(String[] args) {
-        measureTime("BufferedReader.readLine() into ArrayList", WordSorter::bufferReaderToArrayList, args[0]);
+        sortByWordsInTheFile("Word Sorter", WordSorter::bufferReaderToArrayList, args[0]);
     }
 
-    private static void measureTime(String name, Function<String, List<String>> fn, String path) {
+    private static void sortByWordsInTheFile(String name, Function<String, List<String>> fn, String path) {
         System.out.println("-----------------------------------------------------------");
         System.out.println("run: " + name);
         long startTime = System.nanoTime();
@@ -44,10 +44,6 @@ public class WordSorter {
         long estimatedTime = System.nanoTime() - startTime;
         System.out.println("estimatedTime: " + NANOSECONDS.toMillis(estimatedTime)+"ms");
     }
-
-/*    private static List<String> getWordList(List<String> line){
-        return line.stream().forEach(o -> o.);
-    }*/
 
     private static List<String> bufferReaderToArrayList(String path) {
         return bufferReaderToList(path, new ArrayList<>());
